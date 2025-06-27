@@ -516,7 +516,7 @@ function ProductsPage() {
             {/* Price Range */}
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', marginBottom: '0.5rem' }}>
-                Price Range: ${filters.priceRange[0]} - ${filters.priceRange[1]}
+                Price Range: ₹{filters.priceRange[0]} - ₹{filters.priceRange[1]}
               </label>
               <input
                 type="range"
@@ -685,9 +685,9 @@ function ProductCard({ product }) {
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#2563eb' }}>${product.price}</span>
+            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#2563eb' }}>₹{product.price}</span>
             {product.originalPrice && (
-              <span style={{ fontSize: '0.875rem', color: '#6b7280', textDecoration: 'line-through' }}>${product.originalPrice}</span>
+              <span style={{ fontSize: '0.875rem', color: '#6b7280', textDecoration: 'line-through' }}>₹{product.originalPrice}</span>
             )}
           </div>
 
@@ -812,10 +812,10 @@ function ProductDetailPage() {
 
           {/* Price */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontSize: '2.25rem', fontWeight: 'bold', color: '#2563eb' }}>${selectedProduct.price}</span>
+            <span style={{ fontSize: '2.25rem', fontWeight: 'bold', color: '#2563eb' }}>₹{selectedProduct.price}</span>
             {selectedProduct.originalPrice && (
               <>
-                <span style={{ fontSize: '1.5rem', color: '#6b7280', textDecoration: 'line-through' }}>${selectedProduct.originalPrice}</span>
+                <span style={{ fontSize: '1.5rem', color: '#6b7280', textDecoration: 'line-through' }}>₹{selectedProduct.originalPrice}</span>
                 <span style={{ backgroundColor: '#ef4444', color: '#fff', padding: '0.25rem 0.5rem', borderRadius: '0.25rem', fontSize: '0.875rem', fontWeight: '600' }}>
                   Save {discount}%
                 </span>
@@ -959,7 +959,7 @@ function CartPage() {
                 <div style={{ flex: '1' }}>
                   <h3 style={{ fontWeight: '600', fontSize: '1.125rem' }}>{item.name}</h3>
                   <p style={{ color: '#4b5563', fontSize: '0.875rem' }}>{item.brand}</p>
-                  <p style={{ color: '#2563eb', fontWeight: '600' }}>${item.price.toFixed(2)}</p>
+                  <p style={{ color: '#2563eb', fontWeight: '600' }}>₹{item.price.toFixed(2)}</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #d1d5db', borderRadius: '0.5rem' }}>
@@ -1001,25 +1001,25 @@ function CartPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#4b5563' }}>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toFixed(2)}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#4b5563' }}>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#4b5563' }}>Tax (8%)</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>₹{tax.toFixed(2)}</span>
             </div>
             <hr style={{ borderTop: '1px dashed #d1d5db', margin: '0.5rem 0' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '600', fontSize: '1.125rem' }}>
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>₹{total.toFixed(2)}</span>
             </div>
           </div>
           {shipping > 0 && (
             <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '0.5rem', fontSize: '0.875rem', color: '#1e40af' }}>
-              Add ${(50 - subtotal).toFixed(2)} more for free shipping!
+              Add ₹{(50 - subtotal).toFixed(2)} more for free shipping!
             </div>
           )}
           <button
@@ -1085,7 +1085,7 @@ function CheckoutPage() {
     // Simulate payment and order placement
     setTimeout(() => {
       setIsProcessing(false);
-      showGlobalMessage(`Order placed successfully for $${total.toFixed(2)} using ${paymentMethod}! (Simulated)`, 'success');
+      showGlobalMessage(`Order placed successfully for ₹${total.toFixed(2)} using ${paymentMethod}! (Simulated)`, 'success');
       setCart([]); // Clear cart after simulated order
       setCurrentView('profile'); // Redirect to profile/orders page
     }, 2000); // Simulate API call delay
@@ -1145,26 +1145,26 @@ function CheckoutPage() {
             {cart.map(item => (
               <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
                 <span style={{ color: '#4b5563' }}>{item.name} ({item.quantity})</span>
-                <span>${(item.price * item.quantity).toFixed(2)}</span>
+                <span>₹{(item.price * item.quantity).toFixed(2)}</span>
               </div>
             ))}
             <hr style={{ borderTop: '1px dashed #d1d5db', margin: '0.5rem 0' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#4b5563' }}>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toFixed(2)}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#4b5563' }}>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#4b5563' }}>Tax</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>₹{tax.toFixed(2)}</span>
             </div>
             <hr style={{ borderTop: '1px solid #d1d5db', margin: '0.5rem 0' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.125rem' }}>
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>₹{total.toFixed(2)}</span>
             </div>
           </div>
           <button
@@ -1268,7 +1268,7 @@ function ProfilePage() {
                   </div>
                   <p style={{ color: '#4b5563', marginBottom: '0.5rem' }}>Items: {order.items.map(item => `${item.name} (x${item.quantity})`).join(', ')}</p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontWeight: 'bold', color: '#2563eb' }}>Total: ${order.total.toFixed(2)}</span>
+                    <span style={{ fontWeight: 'bold', color: '#2563eb' }}>Total: ₹{order.total.toFixed(2)}</span>
                     <span style={{ padding: '0.25rem 0.5rem', borderRadius: '0.25rem', fontSize: '0.875rem', fontWeight: '600',
                       backgroundColor: order.status === 'Delivered' ? '#d1fae5' : (order.status === 'Processing' ? '#fefce8' : '#e0f2fe'),
                       color: order.status === 'Delivered' ? '#065f46' : (order.status === 'Processing' ? '#854d09' : '#1e40af')
